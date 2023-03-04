@@ -18,15 +18,22 @@
     <!-- ===Navbar=== -->
     <nav>
         <!-- Icons and burger button -->
-        <div class="icons nav-row"> 
+        <div class="icons nav-row nav-constant"> 
             <i class="fa-solid fa-bicycle"></i>
-            <i class="fa-solid fa-xmark close-menu"></i>
-            <i class="fa-solid fa-bars burger"></i>
         </div>
+
+        <input type="checkbox" id="nav-button">
+        <label for="nav-button" class="burger-icon nav-row nav-constant">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
 
         <div class="menu">
             <div class="dropdown nav-row">
+                <div class="arrow-down"></div>
                 <p>Wypożycz</p>
+                
                 <ul>
                     <li><a href="#">Rower</a></li>
                     <li><a href="#">Hulajnogę</a></li>
@@ -38,11 +45,14 @@
             </div>
 
             <div class="nav-row search-row">
-                <input type="text" id="search-input" placeholder="Nazwa modelu">
+                <input type="text" id="search-input" placeholder="Szukaj">
                 <button id="search-btn">Szukaj</button>
             </div>
         </div>
     </nav>
+
+    <!-- Space block -->
+    <div class="space-block"></div>
 
     <!-- ===Main=== -->
     <div class="container">

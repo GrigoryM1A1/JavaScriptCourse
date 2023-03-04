@@ -12,39 +12,72 @@ html{
 }
 
 /* Navabar */
+/* Navabar */
 nav{
-    /* position: fixed; */
+    position: fixed;
     background-color: var(--div-background);
     color: white;
     width: 100%;
-    /* top: 0;
-    left: 0; */
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
 }
 
 .nav-row{
     padding: .5em .7em;
     font-size: 1.5rem;
-    width: 100%;
+    /* width: 100%; */
 }
 
 /* Burger menu */
-.icons{
-    display: flex;
-    justify-content: space-between;
-}
-
-.close-menu,
-.burger{
-    cursor: pointer;
-}
-
-.close-menu{
+#nav-button{
     display: none;
 }
 
-/* .burger{
-    display: none;
-} */
+.burger-icon{
+    display: block;
+}
+
+nav .burger-icon .line{
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 3px;
+
+    transition: all .3s ease-in-out;
+}
+
+nav :checked ~ .burger-icon .line:nth-child(1){
+    transform: translateY(10px) rotate(225deg);
+}
+
+nav :checked ~ .burger-icon .line:nth-child(3){
+    transform: translateY(-10px) rotate(-225deg);
+}
+
+nav :checked ~ .burger-icon .line:nth-child(2){
+    opacity: 0;
+}
+
+.menu{
+    position: fixed;
+    background-color: var(--div-background);
+    top: -100%;
+    width: 100%;
+    transition: all .6s;
+    z-index: 8;
+}
+
+nav :checked ~ .menu{
+    top: 60.8px;
+}
+
+.nav-constant{
+    z-index: 10;
+}
+
 
 /* Dropdowon menu - Wypożycz */
 .dropdown{
@@ -63,11 +96,23 @@ nav{
 .dropdown p{
     /* TODO */
     cursor: pointer;
-    width: 125px;
+    width: 145px;
 }
 
+.arrow-down{
+    cursor: pointer;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid white;
+
+    left: 145px;
+    top: 30.4px;
+  }
+
 .dropdown p:hover + ul,
-.dropdown ul:hover{
+.dropdown ul:hover,
+.arrow-down:hover ~ ul{
     display: block;
 }
 
@@ -77,7 +122,7 @@ nav{
 
 .dropdown ul li a{
     text-decoration: none;
-    padding: .3em .2em;
+    padding: .3em .5em;
     color: var(--div-background);
     width: 100%;
     display: inline-block;
@@ -132,7 +177,8 @@ nav{
     transition: .5s;
     margin: 0;
     border: none;
-    background-color: rgb(110, 110, 110);
+    color: white;
+    background-color: rgb(20, 20, 20, .8);
     width: 30%;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -140,6 +186,13 @@ nav{
 
 .search-row button:hover{
     background-color: rgb(156, 156, 156);
+    color: black;
+}
+
+.space-block{
+    width: 100%;
+    height: 60.8px;
+    background-color: var(--div-background);
 }
 
 
@@ -149,7 +202,8 @@ nav{
 }
 .title h2{
     font-size: 1.5rem;
-    margin: .5em 0;
+    width: 97%;
+    margin: .5em auto;
 }
 
 /* Bike cards styling */
