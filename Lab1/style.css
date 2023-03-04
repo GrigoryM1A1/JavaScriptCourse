@@ -1,6 +1,6 @@
 /* Variables */
 html{
-    
+    --div-background: rgb(34, 34, 34);
 }
 
 /* Global styling */
@@ -8,9 +8,139 @@ html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Navabar */
+nav{
+    /* position: fixed; */
+    background-color: var(--div-background);
+    color: white;
+    width: 100%;
+    /* top: 0;
+    left: 0; */
+}
+
+.nav-row{
+    padding: .5em .7em;
+    font-size: 1.5rem;
+    width: 100%;
+}
+
+/* Burger menu */
+.icons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-menu,
+.burger{
+    cursor: pointer;
+}
+
+.close-menu{
+    display: none;
+}
+
+/* .burger{
+    display: none;
+} */
+
+/* Dropdowon menu - Wypożycz */
+.dropdown{
+    position: relative;
+}
+
+.dropdown ul{
+    width: 170px;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dropdown p{
+    /* TODO */
+    cursor: pointer;
+    width: 125px;
+}
+
+.dropdown p:hover + ul,
+.dropdown ul:hover{
+    display: block;
+}
+
+.dropdown ul li{
+    list-style: none;
+}
+
+.dropdown ul li a{
+    text-decoration: none;
+    padding: .3em .2em;
+    color: var(--div-background);
+    width: 100%;
+    display: inline-block;
+    transition: .5s;
+}
+
+.dropdown ul li:nth-child(1) a{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.dropdown ul li:nth-child(2) a{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dropdown ul li a:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+.dropdown ul li:nth-child(1){
+    border-bottom: 1px solid var(--div-background);
+}
+
+.buy-bike a{
+    text-decoration: none;
+    color: white;
+}
+
+.search-row{
+    margin-top: 1em;
+    display: flex;
+    width: 100%;
+
+}
+
+.search-row input{
+    font-size: 1.2rem;
+    padding: .5em;
+    outline: none;
+    border: none;
+    width: 70%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search-row button{
+    font-size: 1.2rem;
+    padding: .5em;
+    background-color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0;
+    border: none;
+    background-color: rgb(110, 110, 110);
+    width: 30%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search-row button:hover{
+    background-color: rgb(156, 156, 156);
+}
 
 
 /* Main */
@@ -37,7 +167,7 @@ html{
 
 .card{
     color: white;
-    background-color: rgb(34, 34, 34);
+    background-color: var(--div-background);
 
     display: flex;
     flex-direction: column;
@@ -80,7 +210,7 @@ html{
 
 /* Footer */
 footer{
-    background-color: rgb(34, 34, 34);
+    background-color: var(--div-background);
     color: white;
     text-align: center;
 }
