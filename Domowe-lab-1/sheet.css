@@ -1,0 +1,132 @@
+body{
+    margin: 10px 25px;
+}
+
+main { 
+    padding-bottom: 1.5em;
+}
+
+ul li{
+    font-size: 1.1rem;
+}
+
+footer{
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+footer a{
+    font-size: 1.3rem;
+}
+
+blockquote{
+    margin: 10px 30px 10px 0px;
+    font-size: .8rem;
+    font-family: 'Consolas';
+}
+
+header h1,
+aside h1,
+main h1{
+    font-size: 2rem;
+    margin: .5em 0;
+}
+
+aside h2{
+    font-size: 1.25rem;
+}
+
+
+nav,
+aside,
+main,
+footer{
+    margin-top: 1em;
+}
+
+.azure{
+    background-color: #eff;
+}
+
+.border{
+    border: 1px solid #A8A8A8;
+}
+
+.shadow{
+    box-shadow: 0 0 8px black;
+}
+
+.content-padding{
+    padding-left: 1.2em;
+}
+
+/* Animacja */
+html{
+    --text-color-initial: red;
+    --text-color-final: blue;
+}
+
+.animate{
+    animation: color-change;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes color-change{
+    0%{
+        color: var(--text-color-initial);
+    }
+    50%{
+        color: var(--text-color-final);
+    }
+    100%{
+        color: var(--text-color-initial);
+    }
+}
+
+
+/* Meida Query */
+@media (min-width: 590px){
+    .container{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav-main-container{
+        width: 40%;
+    }
+
+    nav{
+        width: 60%;
+    }
+
+    main{
+        width: 90%;
+    }
+
+    aside{
+        width: 50%;
+        height: 40%;
+    }    
+
+    header h1, aside h1, main h1 {
+        font-size: 2.3rem;
+        margin: .5em 0;
+    }
+
+    aside h2, footer a{
+        font-size: 1.5rem;
+    }
+
+    blockquote{
+        font-size: 1rem;
+    }
+
+    ul li{
+        font-size: 1.3rem;
+    }
+
+    main h1{
+        margin-right: .5em;
+    }
+}
