@@ -250,6 +250,7 @@ nav :checked ~ .menu{
 /* Basket styling */
 .basket{
     margin: 1.2em;
+    border: 1px black solid;
 }
 
 .row{
@@ -267,4 +268,26 @@ footer{
     background-color: var(--div-background);
     color: white;
     text-align: center;
+}
+
+footer a i{
+    text-decoration: none;
+    color: white;
+    margin-right: .5em;
+}
+
+footer li{
+    padding: .3em 0;
+}
+
+footer li:nth-child(1){
+    padding-top: .5em;
+}
+
+footer li:nth-child(3){
+    padding-bottom: .5em;
+}
+
+footer li.title{
+    font-size: 1.2rem;
 }
