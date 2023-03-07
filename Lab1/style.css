@@ -255,17 +255,45 @@ nav :checked ~ .menu{
 /* Basket styling */
 .basket{
     margin: 1.2em auto;
-    border: 1px black solid;
     width: 95%;
-}
-
-.row{
     display: flex;
-    justify-content: space-between;
 }
 
-.row li{
+.basket li{
     list-style: none;
+    padding: .2em;
+    border-bottom: 1px solid var(--div-background);
+}
+
+.basket .count-col li{
+    padding-left: .4em;
+}
+
+.count-col{
+    width: 15%;
+}
+
+.model-col{
+    width: 40%;
+}
+
+.amount-col{
+    width: 45%;
+}
+
+.header-row{
+    background: var(--div-background);
+    color: white;
+}
+
+.basket .count-col .header-row{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.basket .amount-col .header-row{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 
@@ -299,32 +327,14 @@ footer li.title{
 }
 
 .animate{
-    /* transform: matrix(0, 45deg, 45deg, 0, 0, 0); */
-    /* transform: skewX(-7deg) scale(.9); */
-    /* transform: skewX(7deg) scale(1); */
-    /* transform: skewY(7deg) scale(1.1); */
-    /* transform: skewY(-7deg) scale(.9); */
     animation: translate-animation;
     animation-duration: 13s;
     animation-iteration-count: infinite;
     z-index: -1;
 }
 
-/* matrix(scale x, skew y, skew x, scale y, translate x, translate y) */
 /* Animations */
 @keyframes translate-animation{
-    /* 0%{
-        transform: skewX(-7deg) scale(.9);
-    }
-    33%{
-        transform: skewX(7deg) scale(1);
-    }
-    66%{
-        transform: skewY(7deg) scale(1.1);
-    }
-    100%{
-        transform: skewX(-7deg) scale(.9);
-    } */
     0%{
         transform: skewX(0deg) scale(1);
     }
@@ -376,7 +386,7 @@ footer li.title{
     }
 }
 
-@media (min-width: 660px){
+@media (min-width: 705px){
     footer ul{
         display: flex;
         justify-content: space-between;
