@@ -241,15 +241,20 @@ nav :checked ~ .menu{
     margin-bottom: .8em;
 }
 
+.card h5,
+.card h4{
+    font-weight: 500;
+}
+
 .card img{
-    max-width: 400px;
     margin: .75em 0;
     border-radius: 7px;
+    object-fit: cover;
 }
 
 /* Basket styling */
 .basket{
-    margin: 1.2em;
+    margin: 1.2em auto;
     border: 1px black solid;
 }
 
@@ -290,4 +295,98 @@ footer li:nth-child(3){
 
 footer li.title{
     font-size: 1.2rem;
+}
+
+
+/* Media query */
+@media (min-width: 600px){
+    /* Main content */
+    .title h2{
+        font-size: 2rem;
+    }
+
+    .cards-container{
+        width: 98%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .side-card{
+        width: 28%;
+    }
+
+    .mid-card{
+        width: 40%;
+    }
+
+    .card h5{
+        font-size: 1.3rem;
+    }
+
+    .basket{
+        width: 98%;
+    }
+}
+
+@media (min-width: 660px){
+    footer ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+    }
+
+    footer ul li{
+        margin: .7em .9em;
+    }
+}
+
+@media (min-width: 1050px){
+    /* Navbar */
+    nav{
+        position: initial;
+        justify-content: initial;
+        align-items: center;
+    }
+
+    .burger-icon{
+        display: none;
+    }
+
+    .menu{
+        position: initial;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .space-block{
+        display: none;
+    }
+
+    .search-row{
+        margin: initial;
+        width: 50%;
+    }
+
+    .buy-bike{
+        position: absolute;
+        left: 230px
+    }
+
+    /* Main content */
+    .cards-container,
+    .basket{
+        width: 95%;
+    }
+
+    .side-card,
+    .mid-card{
+        width: 32%;
+    }
+
+    .card p{
+        font-size: 1.3rem;
+        font-weight: 200;
+    }
 }
