@@ -256,6 +256,7 @@ nav :checked ~ .menu{
 .basket{
     margin: 1.2em auto;
     border: 1px black solid;
+    width: 95%;
 }
 
 .row{
@@ -295,6 +296,53 @@ footer li:nth-child(3){
 
 footer li.title{
     font-size: 1.2rem;
+}
+
+.animate{
+    /* transform: matrix(0, 45deg, 45deg, 0, 0, 0); */
+    /* transform: skewX(-7deg) scale(.9); */
+    /* transform: skewX(7deg) scale(1); */
+    /* transform: skewY(7deg) scale(1.1); */
+    /* transform: skewY(-7deg) scale(.9); */
+    animation: translate-animation;
+    animation-duration: 13s;
+    animation-iteration-count: infinite;
+    z-index: -1;
+}
+
+/* matrix(scale x, skew y, skew x, scale y, translate x, translate y) */
+/* Animations */
+@keyframes translate-animation{
+    /* 0%{
+        transform: skewX(-7deg) scale(.9);
+    }
+    33%{
+        transform: skewX(7deg) scale(1);
+    }
+    66%{
+        transform: skewY(7deg) scale(1.1);
+    }
+    100%{
+        transform: skewX(-7deg) scale(.9);
+    } */
+    0%{
+        transform: skewX(0deg) scale(1);
+    }
+    20%{
+        transform: skewX(-7deg) scale(.8);
+    }
+    40%{
+        transform: skewX(7deg) scale(.9);
+    }
+    60%{
+        transform: skewY(7deg) scale(.8);
+    }
+    80%{
+        transform: skewY(-7deg) scale(.9);
+    }
+    100%{
+        transform: skewX(0deg) scale(1);
+    }
 }
 
 
@@ -377,12 +425,12 @@ footer li.title{
     /* Main content */
     .cards-container,
     .basket{
-        width: 95%;
+        width: 98%;
     }
 
     .side-card,
     .mid-card{
-        width: 32%;
+        width: 30%;
     }
 
     .card p{
