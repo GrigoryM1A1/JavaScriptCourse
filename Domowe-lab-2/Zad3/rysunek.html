@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Page title
+        </title>
+    </head>
+    <body>
+        <main>
+            <h1>
+                Płótno
+            </h1>
+
+            <h1>
+                Canvas
+            </h1>
+
+            <canvas id="canvas"
+                    width="300"
+                    height="300"
+                    style="border:1px solid #000000;">
+                Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas" / It looks like your browser does not support the "canvas" element
+            </canvas>
+        </main>
+
+        <script>
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+             //Wykreślenie podanego tekstu na płótnie / Drawing given text on canvas
+            
+            ctx.fillStyle = "#333333";
+            // Kwadrat
+            ctx.fillRect(100, 100, 100, 100);
+
+            // Trójkąt do góry
+            ctx.moveTo(100,200);
+            ctx.lineTo(150,230);
+            ctx.lineTo(200,200);
+            ctx.fill();
+
+            // Trójkąt w dół
+            ctx.moveTo(100, 100);
+            ctx.lineTo(150,70);
+            ctx.lineTo(200,100);
+            ctx.fill();
+
+            ctx.font = 'bold 80px Arial';
+            ctx.fillStyle = "white";
+            ctx.fillText("B", 125, 175);
+        </script>
+    </body>
+</html>
