@@ -80,3 +80,64 @@ describe('The sum() function', function() {
         expect(sum(-2,2)).to.equal(0);
     });
 });
+
+
+describe("Same cyfry", function() {
+    it('cyfry("12345") = [9, 6]', function() {
+        expect(cyfry("12345")).deep.to.equal([9, 6]);
+    });
+    it('litery("12345") = [0, 0]', function() {
+        expect(litery("12345")).deep.to.equal([0, 0]);
+    });
+    it('suma("12345") = 12345', function() {
+        expect(suma("12345")).to.equal(12345);
+    });
+});
+
+describe("Same litery", function() {
+    it('cyfry("aBcDEFgh") = [0, 0]', function() {
+        expect(cyfry("aBcDEFgh")).deep.to.equal([0, 0]);
+    });
+    it('litery("aBcDEFgh") = [0, 0]', function() {
+        expect(litery("aBcDEFgh")).deep.to.equal([4, 4]);
+    });
+    it('suma("aBcDEFgh") = 0', function() {
+        expect(suma("aBcDEFgh")).to.equal(0);
+    });
+});
+
+describe("Litery, a po nich cyfry", function() {
+    it('cyfry("aBcDEFgh12345") = [9, 6]', function() {
+        expect(cyfry("aBcDEFgh12345")).deep.to.equal([9, 6]);
+    });
+    it('litery("aBcDEFgh12345") = [4, 4]', function() {
+        expect(litery("aBcDEFgh12345")).deep.to.equal([4, 4]);
+    });
+    it('suma("aBcDEFgh12345") = 0', function() {
+        expect(suma("aBcDEFgh12345")).to.equal(0);
+    });
+});
+
+describe("Cyfry, a po nich litery", function() {
+    it('cyfry("12345aBcDEFgh") = [9, 6]', function() {
+        expect(cyfry("12345aBcDEFgh")).deep.to.equal([9, 6]);
+    });
+    it('litery("12345aBcDEFgh") = [4, 4]', function() {
+        expect(litery("12345aBcDEFgh")).deep.to.equal([4, 4]);
+    });
+    it('suma("12345aBcDEFgh") = 12345', function() {
+        expect(suma("12345aBcDEFgh")).to.equal(12345);
+    });
+});
+
+describe("Pusty napis", function() {
+    it('cyfry("") = [0, 0]', function() {
+        expect(cyfry("")).deep.to.equal([0, 0]);
+    });
+    it('litery("") = [0, 0]', function() {
+        expect(litery("")).deep.to.equal([0, 0]);
+    });
+    it('suma("") = 0', function() {
+        expect(suma("")).to.equal(0);
+    });
+});
