@@ -9,7 +9,7 @@ function readAndPrint() {
 // Brak + OK -> string (pewnie pusty znak)
 // Wartość + Anuluj -> object
 
-// readAndPrint();
+readAndPrint();
 
 function handleForm() {
     console.log("Wypisz!");

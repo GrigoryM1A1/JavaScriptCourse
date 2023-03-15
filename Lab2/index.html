@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <!-- Zmień wartość "lang" z 'en' na 'pl' -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0146767ed2.js" crossorigin="anonymous"></script>
+    <title>
+      Tytuł strony / Page tile
+    </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- Umieść tutaj treść elementu 'body' z zadania 1 -->
+    <!-- Put here the contents of the 'body' element from exercise 1 -->
+
+    <!-- ===Navbar=== -->
+    <nav>
+        <!-- Icons and burger button -->
+        <div class="icons nav-row nav-constant"> 
+            <i class="fa-solid fa-bicycle"></i>
+        </div>
+
+        <input type="checkbox" id="nav-button">
+        <label for="nav-button" class="burger-icon nav-row nav-constant">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label>
+
+        <div class="menu">
+            <div class="dropdown nav-row">
+                <div class="arrow-down"></div>
+                <p>Wypożycz</p>
+                
+                <ul>
+                    <li><a href="#">Rower</a></li>
+                    <li><a href="#">Hulajnogę</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-row buy-bike">
+                <a href="#">Kup rower</a>
+            </div>
+
+            <div class="nav-row search-row">
+                <input type="text" id="search-input" placeholder="Szukaj">
+                <button id="search-btn">Szukaj</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Space block -->
+    <div class="space-block"></div>
+
+    <!-- ===Main=== -->
+    <div class="container">
+        <div class="title">
+            <h2>Wypożyczalnia rowerów i hulajnóg</h2>
+        </div>
+        
+        <div class="cards-container">
+            <div class="card side-card animate">
+                <h5 class="category">Rowery szosowe</h5>
+                <h4>Rower wyścigowy Hiland</h4>
+                <img src="images/rower2.jpg" alt="Rower">
+                <p>Cena: 1393 zł</p>
+            </div>
+
+            <div class="card mid-card">
+                <h5 class="category">Rowery górskie</h5>
+                <h4>Rower górski INDIANA X-Pulser</h4>
+                <img src="images/rower1.jpg" alt="Rower">
+                <p>Cena: 1199 zł</p>
+            </div>
+
+            <div class="card side-card animate">
+                <h5 class="category">Hulajnogi</h5>
+                <h4>JIVR | Scooter</h4>
+                <img src="images/scooter.jpg" alt="Rower">
+                <p>Cena wypożyczenia: 2.5 zł/min</p>
+            </div>
+        </div>
+
+        <div class="basket">
+            <div class="count-col">
+                <li class="header-row">#</li>
+                <li>1</li>
+                <li>1</li>
+            </div>
+            <div class="model-col">
+                <li class="header-row">Model</li>
+                <li>Hiland</li>
+                <li>Indiana</li>
+            </div>
+            <div class="amount-col">
+                <li class="header-row">Liczba sztuk</li>
+                <li>20</li>
+                <li>50</li>
+            </div>
+        </div>
+
+        <div class="form-div">
+            <form name="rent">
+                <div class="input-container">
+                    <input type="text">
+                    <button>Enter</button>
+                </div>
+                <div class="input-container">
+                    <input type="text">
+                    <button>Enter</button>
+                </div>
+                <div class="input-container">
+                    <input type="text">
+                    <button>Enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===Footer=== -->
+    <footer>
+        <ul>
+            <li class="footer-item title">Wypożyczalnia "Bicykl"</li>
+            <li class="footer-item"><a href="mailto:email@gmail.com"><i class="fa-solid fa-envelope"></i>email@gmail.com</a></li>
+            <li class="footer-item"><a href="tel:555-0179"><i class="fa-solid fa-mobile-button"></i>phone-numbe: 555-0179r</a></li>
+        </ul>
+    </footer>
+  </body>
+</html>
+
+<!--
+Wzbogać stronę WWW o formularz HTML (trzy pola tekstowe + przyciski) oraz skrypt JS
+
+Skrypt ma implementować wypożyczalnię rowerów oraz hulajnóg
+
+Zawartość wypożyczalni jest zahardkodowana
+
+Poszczególne komdendy są reprezentowane przez przyciski, a ich argumenty podajemy w polach tekstowych
+
+Przechowywane informacje, co najmniej:
+- rodzaj pojazdu
+- marka,
+- url zdjęcia pojazdu
+- ilość sztuk
+- imię i nazwisko wypożyczającego
+- JSON.stringify()
+- JSON.parse()
+
+Wykaz komend:
+- wypożyczenie pojazdu (przez określonego klienta)
+- zwrot pojazdu
+- wyświetlanie informacji o pojazdach (rodzaj, marka, ilosć),
+które są dostępne do wypożyczenia-->
