@@ -296,6 +296,29 @@ nav :checked ~ .menu{
     border-bottom-right-radius: 3px;
 }
 
+/* Form */
+.form-div{
+    width: 45%;
+    margin: 1em auto;
+}
+
+.input-container{
+    display: flex;
+    margin: .7em 0;
+}
+
+.input-container button{
+    width: 40%;
+    font-size: 1.1rem;
+}
+
+.input-container input{
+    width: 60%;
+    font-size: 1.3rem;
+    padding: .5em;
+    outline: none;
+}
+
 
 /* Footer */
 footer{
