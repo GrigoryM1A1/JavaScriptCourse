@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"
+        crossorigin=""></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        crossorigin=""></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div>
+        <div id="root1">
+
+        </div>
+
+        <div id="root2">
+
+        </div>
+    </div>
+
+    <script type="text/babel">
+        class Timer extends React.Component {
+            constructor(){
+                super();
+                this.state = {
+                    count: 0,
+                    intervalID: undefined
+                }
+                this.startTimer = this.startTimer.bind(this);
+                this.increment = this.increment.bind(this);
+                this.stopTimer = this.stopTimer.bind(this);
+            }
+
+            increment() {
+                this.setState(previousValue => ({
+                    count: previousValue.count + 1,
+                }));
+            }
+
+            startTimer() {
+                this.setState(previousValue => ({
+                    intervalID: setInterval(this.increment, 1000)
+                }));
+            }
+
+            stopTimer() {
+                this.setState(previousValue => ({
+                    intervalID: clearInterval(previousValue.intervalID)
+                }));
+            }
+
+            render() {
+                return (
+                    <div className="counter">
+                        <label htmlFor="counter">Counter→</label>
+                        <output id="counter">{this.state.count}</output>
+                        <br></br>
+                        <button onClick={this.startTimer}>Start</button>
+                        <button onClick={this.stopTimer}>Stop</button>
+                    </div>
+                );
+            }
+        }
+
+
+        class InputComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleInput = this.handleInput.bind(this);
+                this.calculations = this.calculations.bind(this);
+                this.handleResult = this.handleResult.bind(this);
+                this.state = ({
+                    iterations: 50
+                });
+            }
+
+            calculations() {
+                var primes = [];
+                for (var i = 0; i < parseInt(this.state.iterations); i++) {
+                    var candidate = i * (1000000000 * Math.random());
+                    var isPrime = true;
+                    for (var c = 2; c <= Math.sqrt(candidate); ++c) {
+                        if (candidate % c === 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+                    if (isPrime) {
+                        primes.push(candidate);
+                    }
+                }
+                return primes
+            }
+
+            handleResult() {
+                let a = this.calculations();
+                this.props.handleResult(a);
+            }
+
+            handleInput(e) {
+                this.setState({
+                    iterations: e.target.value
+                });
+            }
+
+            render() {
+                return (
+                    <div>
+                        <label htmlFor="iterations_main">Number of iterations:</label>
+                        <input id="iterations_main" type="number" defaultValue={this.state.iterations} onChange={this.handleInput}/>
+                        <button onClick={this.handleResult}>Run calculations</button>
+                        <div>{this.state.iterations}</div>
+                    </div>
+                )
+            }
+        }
+
+
+        class OutputComponent extends React.Component {
+            render() {
+                return (
+                    <div>Result: {this.props.result}</div>
+                )
+            }
+        }
+
+
+        class MathComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleResult = this.handleResult.bind(this);
+                this.state = {
+                    result: ''
+                };
+            }
+
+            handleResult(newRes) {
+                this.setState({result: newRes});
+            }
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <OutputComponent result={this.state.result}/>
+                        <InputComponent handleResult={this.handleResult}/>    
+                    </React.Fragment>
+                )
+            }
+        }
+
+        const container1 = document.getElementById('root1');
+        const root = ReactDOM.createRoot(container1);
+        root.render(<Timer/>);
+
+        const container2 = document.getElementById('root2');
+        const root2 = ReactDOM.createRoot(container2);
+        root2.render(<MathComponent/>);
+    </script>
+  </body>
+</html>
