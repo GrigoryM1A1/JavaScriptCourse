@@ -10,6 +10,7 @@
       Tytuł strony / Page tile
     </title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
   </head>
   <body>
     <!-- Umieść tutaj treść elementu 'body' z zadania 1 -->
@@ -102,20 +103,35 @@
         </div>
 
         <div class="form-div">
-            <form name="rent">
+            <!-- Uproszczenie - jedna osoba może wypożyczyć jednorazowo tylko jeden model pojazdu w dowolnej liczbie -->
+            <form id="rent" onsubmit="onRent()">
                 <div class="input-container">
-                    <input type="text" placeholder="Pojazd">
-                    <button>Wypożycz pojazd</button>
-                </div>
-                <div class="input-container">
-                    <input type="text" placeholder="Pojazd">
-                    <button>Zwrot pojazdu</button>
-                </div>
-                <div class="input-container">
-                    <input type="text" placeholder="Rower/Hulajnoga">
-                    <button>Wyświetl</button>
+                    <input type="text" placeholder="Nick" id="rentNick" required>
+                    <input type="text" placeholder="Imię" id="rentName" required>
+                    <input type="text" placeholder="nazwisko" id="rentSurname" required>
+                    <input type="text" placeholder="Pojazd" id="rentVehicle" required>
+                    <input type="number" placeholder="Ile" id="rentAmount" required>
+                    <button id="rentBtn" type="submit">Wypożycz pojazd</button>
                 </div>
             </form>
+
+            <form id="return" onsubmit="onReturn()">
+                <div class="input-container">
+                    <input type="text" placeholder="Nick" id="returnNick" required>
+                    <input type="text" placeholder="Pojazd" id="returnVehicle" required>
+                    <button id="returnBtn">Zwrot pojazdu</button>
+                </div>
+            </form>
+
+            <form id="display" onsubmit="onDisplay()">
+                <div class="display-container disp">
+                    <button id="displayBtn">Wyświetl</button>
+                </div>
+            </form>
+
+            <div class="display-container disp">
+                <button id="reset">Reset</button>
+            </div>
         </div>
     </div>
 

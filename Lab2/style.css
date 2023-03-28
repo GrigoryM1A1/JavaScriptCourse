@@ -304,19 +304,42 @@ nav :checked ~ .menu{
 
 .input-container{
     display: flex;
-    margin: .7em 0;
+    flex-direction: column;
+}
+
+.input-container input{
+    font-size: 1.3rem;
+    padding: .5em;
+    outline: none;
 }
 
 .input-container button{
+    font-size: 1.1rem;
+}
+
+.display-container{
+    display: flex;
+    margin: .7em 0;
+}
+
+.display-container button{
     width: 40%;
     font-size: 1.1rem;
 }
 
-.input-container input{
+.display-container input{
     width: 60%;
     font-size: 1.3rem;
     padding: .5em;
     outline: none;
+}
+
+.disp button{
+    width: 100%;
+}
+
+#rent{
+    margin-bottom: 1em;
 }
 
 
