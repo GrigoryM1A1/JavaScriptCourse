@@ -11,8 +11,8 @@
       <label for="counter">Counter→</label>
       <output id="counter" style="font-size: 4vh; color: red;">0</output>
       <br>
-      <button id="start" onclick="startAnimation()">Start</button>
-      <button id="stop" disabled onclick="stopAnimation()">Stop</button>
+      <button id="start">Start</button>
+      <button id="stop" disabled>Stop</button>
       <!-- ************************************************************** -->
       <hr>
       <h2>Time-consuming calculations — version 1</h2>
@@ -21,7 +21,7 @@
       <br>
       <label for="iterations_main">Number of iterations:</label>
       <input id="iterations_main" type="text" value="50">
-      <button onclick="document.getElementById('result_main').value = calculatePrimes()">Run calculations</button>
+      <button id="btn1">Run calculations</button>
       <!-- ************************************************************** -->
       <h2>Time-consuming calculations — version 2</h2>
       <label for="result_worker">Result:</label>
@@ -29,7 +29,7 @@
       <br>
       <label for="iterations_worker">Number of iterations:</label>
       <input id="iterations_worker" type="text" value="50">
-      <button onclick="startWorker()">Run calculations</button>
+      <button id="btn2">Run calculations</button>
     </form>
     <script>
         const worker = new Worker('worker.js');
@@ -79,6 +79,21 @@
             document.getElementById('stop').disabled = true;
             window.cancelAnimationFrame(animation)
         }
+
+        function changeRes() {
+            document.getElementById('result_main').value = calculatePrimes();
+        }
+
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const startBtn = document.getElementById('start');
+        const stopBtn = document.getElementById('stop');
+
+        startBtn.addEventListener('click', startAnimation);
+        stopBtn.addEventListener('click', stopAnimation);
+
+        btn1.addEventListener('click', changeRes);
+        btn2.addEventListener('click', startWorker);
     </script>
   </body>
 </html>

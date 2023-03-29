@@ -19,6 +19,8 @@
         <div id="root2">
 
         </div>
+
+        <div id="root3"></div>
     </div>
 
     <script type="text/babel">
@@ -158,6 +160,10 @@
         const container2 = document.getElementById('root2');
         const root2 = ReactDOM.createRoot(container2);
         root2.render(<MathComponent/>);
+
+        const container3 = document.getElementById('root3');
+        const root3 = ReactDOM.createRoot(container3);
+        root3.render(<Timer/>);
     </script>
   </body>
 </html>
