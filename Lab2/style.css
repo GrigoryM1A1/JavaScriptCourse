@@ -319,7 +319,7 @@ nav :checked ~ .menu{
 
 .display-container{
     display: flex;
-    margin: .7em 0;
+    margin: .7em auto;
 }
 
 .display-container button{
@@ -338,8 +338,39 @@ nav :checked ~ .menu{
     width: 100%;
 }
 
+.disp{
+    width: 200px;
+}
+
 #rent{
     margin-bottom: 1em;
+}
+
+
+.display-container,
+.input-container{
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--div-background);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.display-container button,
+.input-container button{
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: white;
+    transition: .5s;
+}
+
+.display-container button:hover,
+.input-container button:hover{
+    background-color: rgb(122, 122, 122);
+}
+
+.display-container button{
+    border-radius: 10px;
 }
 
 

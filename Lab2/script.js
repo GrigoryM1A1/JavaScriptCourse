@@ -150,3 +150,5 @@ function setDataBase() {
 
     sessionStorage.setItem(renters[0], JSON.stringify(rentersData[0]));
 }
+
+// setDataBase()
