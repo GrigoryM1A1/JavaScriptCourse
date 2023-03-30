@@ -58,3 +58,23 @@ function displayOnlyBikesOnSale() {
 function displayAll() {
 
 }
+
+function displayStartProducts() {
+    const container = document.querySelector('.container');
+    const pageTitleContainer = document.createElement('div');
+    const pageTitle = document.createElement('h2');
+
+    pageTitleContainer.classList.add('title');
+    pageTitle.innerText = 'Wypożyczalnia rowerów i hulajnóg';
+
+    pageTitleContainer.appendChild(pageTitle);
+    container.appendChild(pageTitleContainer);
+
+
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('cards-container');
+    container.appendChild(cardsContainer);
+}
+
+// setDataBase();
+displayStartProducts();
