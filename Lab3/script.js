@@ -1,80 +1,217 @@
 const buyBike = document.querySelector('#buyBikeBtn');
 const rentBike = document.querySelector('#rentBikeBtn');
 const rentScooter = document.querySelector('#rentScooterBtn');
+const showAll = document.querySelector('#showAll');
+const mainContainer = document.querySelector('.container');
+const cardsContainer = document.querySelector('.cards-container');
 
 
-function setDataBase() {
-    const vehicles = [
-        {
-            type: "Rower",
-            brand: "Kross",
-            imgURL: "https://kross.eu/media/cache/gallery/rc/sica4r7t/images/13/13347/KREV4Z28X23M140003-KR-Evado-4.0-czarny-niebieski-matowy-g.jpg",
-            amount: 4
-        },
-        {
-            type: "Rower",
-            brand: "Kross",
-            imgURL: "https://kross.eu/media/cache/gallery/rc/jqvy4b0i/images/38/38373/KRLV2Z29X19M002320-KR-Level-2.0-%C5%BC%C3%B3%C5%82ty-czarny-po%C5%82ysk-g.jpg",
-            amount: 10
-        },
-        {
-            type: "Hulajnoga",
-            brand: "JEEP",
-            imgURL: "https://prod-api.mediaexpert.pl/api/images/gallery_290_300/thumbnails/images/40/4087842/JEEP-2XE-Sentinel-Czarno-zielono-zolty-skos2.jpg",
-            amount: 20
-        },
-        {
-            type: "Rower",
-            brand: "MTB",
-            imgURL: "https://www.mediaexpert.pl/media/cache/resolve/gallery/images/21/2136441/INDIANA-X-Pulser-6-9-M19-Czarno-brazowy-new.jpg",
-            amount: 4
+// Local Storage
+const customers = JSON.parse(localStorage.getItem("customers")) || [];
+const vehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
+
+
+// Vehicle
+// [
+//     {
+//         name: "",
+//         brand: "",
+//         type: "",
+//         amount: num,
+//         imgURL: "",
+//         forRent: bool,
+//         rentPrice: num
+//         forSale: bool
+//         salePrice: num
+//     }
+// ]
+
+// Customer
+// [
+//     {
+//         nickname: "",
+//         name: "",
+//         surname: "",
+//         basket: [['Name', 5, 'rent/sale']]
+//     }
+// ]
+function displayRentalScooters() {
+    while(cardsContainer.firstChild) {
+        cardsContainer.removeChild(cardsContainer.lastChild);
+    }
+
+    for (item of vehicles) {
+        if (item.forRent && item.type === 'scooter') {
+            createVehicleDiv(item);
         }
-    ]
-
-    const models = ["Evado 4.0", "Level 2.0", "2XE Sentinel", "INDIANA X-Pulser"];
-
-    for (let i = 0; i < models.length; i++) {
-        sessionStorage.setItem(models[i], JSON.stringify(vehicles[i]));
     }
 }
 
 
+function displayOnSaleBikes() {
+    while(cardsContainer.firstChild) {
+        cardsContainer.removeChild(cardsContainer.lastChild);
+    }
 
-function displayOnlyBikesToRent() {
-
+    for (item of vehicles) {
+        if (item.forSale && item.type === 'bike') {
+            createVehicleDiv(item);
+        }
+    }
 }
 
 
-function displayOnlyScootersToRent() {
+function displayOnlyRentalBikes() {
+    while(cardsContainer.firstChild) {
+        cardsContainer.removeChild(cardsContainer.lastChild);
+    }
 
-}
-
-
-function displayOnlyBikesOnSale() {
-
+    for (item of vehicles) {
+        if (item.forRent && item.type === 'bike') {
+            createVehicleDiv(item);
+        }
+    }
 }
 
 
 function displayAll() {
-
+    while(cardsContainer.firstChild) {
+        cardsContainer.removeChild(cardsContainer.lastChild);
+    }
+    vehicles.forEach(createVehicleDiv);
 }
 
-function displayStartProducts() {
-    const container = document.querySelector('.container');
-    const pageTitleContainer = document.createElement('div');
-    const pageTitle = document.createElement('h2');
 
-    pageTitleContainer.classList.add('title');
-    pageTitle.innerText = 'Wypożyczalnia rowerów i hulajnóg';
+function createVehicleDiv({name, brand, amount, imgURL, forRent, forSale, rentPrice, salePrice}) {
+    const card = document.createElement('div');
+    card.classList.add('card');
 
-    pageTitleContainer.appendChild(pageTitle);
-    container.appendChild(pageTitleContainer);
+    const category = document.createElement('h5');
+    category.classList.add('category');
+    category.innerText = brand;
 
+    const vehName = document.createElement('h4');
+    vehName.innerText = name;
 
-    const cardsContainer = document.createElement('div');
-    cardsContainer.classList.add('cards-container');
-    container.appendChild(cardsContainer);
+    const img = document.createElement('img');
+    img.src = imgURL;
+
+    const amountLeft = document.createElement('h4');
+    amountLeft.innerText = 'Sztuk w magazynie: ' + amount;
+
+    if (forRent && forSale) {
+        const p1 = document.createElement('p');
+        const p2 = document.createElement('p');
+
+        p1.innerText = 'Koszt zakupu: ' + salePrice + 'zł';
+        p2.innerText = 'Koszt wypozycznie: ' + rentPrice + 'zł/h';
+        card.append(category, vehName, img, amountLeft, p1, p2);
+    } else if (forRent && !forSale) {
+        const p2 = document.createElement('p');
+        p2.innerText = 'Koszt wypozycznie: ' + rentPrice + 'zł/h';
+        card.append(category, vehName, img, amountLeft, p2);
+    } else if (!forRent && forSale) {
+        const p1 = document.createElement('p');
+        p1.innerText = 'Koszt zakupu: ' + salePrice + 'zł';
+        card.append(category, vehName, img, amountLeft, p1);
+    }
+
+    cardsContainer.appendChild(card);    
 }
 
-// setDataBase();
-displayStartProducts();
+
+function addVehicle(name, brand, type, amount, imgURL, forRent, forSale, rentPrice, salePrice) {
+    customers.push({
+        name: name,
+        brand: brand,
+        type: type,
+        amount: amount,
+        imgURL: imgURL,
+        forRent: forRent,
+        forSale: forSale,
+        rentPrice: rentPrice,
+        salePrice: salePrice
+    });
+}
+
+
+function setDataBase() {
+    let vehiclesToSet = [
+        {
+            name: "Evado 4.0",
+            brand: "Kross",
+            type: "bike",
+            amount: 15,
+            imgURL: "https://kross.eu/media/cache/gallery/rc/sica4r7t/images/13/13347/KREV4Z28X23M140003-KR-Evado-4.0-czarny-niebieski-matowy-g.jpg",
+            forRent: true,
+            forSale: true,
+            rentPrice: 20,
+            salePrice: 1400
+        },
+        {
+            name: "Level 2.0",
+            brand: "Kross",
+            type: "bike",
+            amount: 20,
+            imgURL: "https://kross.eu/media/cache/gallery/rc/jqvy4b0i/images/38/38373/KRLV2Z29X19M002320-KR-Level-2.0-%C5%BC%C3%B3%C5%82ty-czarny-po%C5%82ysk-g.jpg",
+            forRent: false,
+            forSale: true,
+            rentPrice: 0,
+            salePrice: 1200
+        },
+        {
+            name: "2XE Sentinel",
+            brand: "JEEP",
+            type: "scooter",
+            amount: 25,
+            imgURL: "https://prod-api.mediaexpert.pl/api/images/gallery/thumbnails/images/40/4087842/JEEP-2XE-Sentinel-Czarno-zielono-zolty-skos1.jpg",
+            forRent: true,
+            forSale: false,
+            rentPrice: 15,
+            salePrice: 0
+        },
+        {
+            name: "INDIANA X-Pulser",
+            brand: "MTB",
+            type: "bike",
+            amount: 10,
+            imgURL: "https://www.mediaexpert.pl/media/cache/resolve/gallery/images/21/2136441/INDIANA-X-Pulser-6-9-M19-Czarno-brazowy-new.jpg",
+            forRent: true,
+            forSale: true,
+            rentPrice: 20,
+            salePrice: 1125
+        },
+        {
+            name: "Scooty 10",
+            brand: "MOTUS",
+            type: 'scooter',
+            amount: 20,
+            imgURL: "https://prod-api.mediaexpert.pl/api/images/gallery/thumbnails/images/36/3625537/MOTUS-Scooty-10-Turkusowy-skos.jpg",
+            forRent: true,
+            forSale: false,
+            rentPrice: 14,
+            salePrice: 0
+        }
+    ]
+    if (vehicles.length === 0) {
+        console.log('We must set db');
+        for (item of vehiclesToSet) {
+            vehicles.push(item);
+            localStorage.setItem("vehicles", JSON.stringify(vehicles));
+        }
+    } else {
+        console.log('Db already set');
+    }
+    displayAll();
+}
+
+
+window.onload = setDataBase;
+localStorage.setItem("customers", JSON.stringify(customers));
+localStorage.setItem("vehicles", JSON.stringify(vehicles));
+
+
+showAll.addEventListener('click', displayAll);
+buyBike.addEventListener('click', displayOnSaleBikes);
+rentBike.addEventListener('click', displayOnlyRentalBikes);
+rentScooter.addEventListener('click', displayRentalScooters);

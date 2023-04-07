@@ -254,7 +254,7 @@ nav :checked ~ .menu{
     font-size: 1.35rem;
 }
 
-.card p{
+.card p:nth-child(even){
     margin-bottom: .8em;
 }
 
@@ -264,7 +264,8 @@ nav :checked ~ .menu{
 }
 
 .card img{
-    margin: .75em 0;
+    max-width: 300px;
+    margin: .75em auto;
     border-radius: 7px;
     object-fit: cover;
 }
@@ -383,7 +384,8 @@ footer li.title{
     .cards-container{
         width: 98%;
         flex-direction: row;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 
     .side-card{
