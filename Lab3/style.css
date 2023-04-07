@@ -351,27 +351,51 @@ footer li.title{
     z-index: -1;
 }
 
-/* Animations */
-@keyframes translate-animation{
-    0%{
-        transform: skewX(0deg) scale(1);
-    }
-    20%{
-        transform: skewX(-7deg) scale(.8);
-    }
-    40%{
-        transform: skewX(7deg) scale(.9);
-    }
-    60%{
-        transform: skewY(7deg) scale(.8);
-    }
-    80%{
-        transform: skewY(-7deg) scale(.9);
-    }
-    100%{
-        transform: skewX(0deg) scale(1);
-    }
+
+/* Forms */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    margin: 1em auto;
 }
+
+.input-container input {
+    margin-bottom: .4em;
+    padding: .5em;
+    outline: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.input-container button {
+    font-size: 1.1rem;
+    padding: .3em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+#rentBtn {
+    color: white;
+    background-color: green;
+}
+
+#rentBtn:hover {
+    background-color: rgba(0, 95, 0, 0.986);
+}
+
+#returnBtn {
+    color: white;
+    background-color: rgb(207, 21, 21);
+}
+
+#returnBtn:hover {
+    background-color: rgb(165, 11, 11);
+}
+
 
 
 /* Media query */

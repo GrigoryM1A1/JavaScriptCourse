@@ -6,6 +6,21 @@ const mainContainer = document.querySelector('.container');
 const cardsContainer = document.querySelector('.cards-container');
 
 
+const rentForm = document.querySelector('#rent');
+const rentNick = rentForm['nick'];
+const rentName = rentForm['name'];
+const rentSurname = rentForm['surname'];
+const rentVehicle = rentForm['vehicle'];
+const rentAmount = rentForm['amount'];
+
+const returnForm = document.querySelector('#return');
+const returnNick = returnForm['nick'];
+const returnVehicle = returnForm['vehicle'];
+
+const rentButton = document.querySelector("#rentBtn");
+const returnButton = document.querySelector('#returnBtn');
+
+
 // Local Storage
 const customers = JSON.parse(localStorage.getItem("customers")) || [];
 const vehicles = JSON.parse(localStorage.getItem("vehicles")) || [];
@@ -206,6 +221,47 @@ function setDataBase() {
 }
 
 
+function addCustomer(nickname, name, surname, basket) {
+    customers.push({
+        nickname: nickname,
+        name: name,
+        surname: surname,
+        basket: basket
+    });
+
+    localStorage.setItem("customers", JSON.stringify(customers));
+}
+
+
+function canBeRented(vehId, amountToRent) {
+    if (vehicles[vehId].forRent && vehicles[vehId] >= amountToRent) {
+        return true;
+    }
+    return false;
+}
+
+
+function vehicleInShop(vehicleName) {
+    for (let i = 0; i < vehicles.length; i++) {
+        if (vehicles[i].name === vehicleName) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+function personInDb(customerNick) {
+    for (let i = 0; i < customers.length; i++) {
+        if (customers[i].nickname === customerNick) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+
+
 window.onload = setDataBase;
 localStorage.setItem("customers", JSON.stringify(customers));
 localStorage.setItem("vehicles", JSON.stringify(vehicles));
@@ -215,3 +271,35 @@ showAll.addEventListener('click', displayAll);
 buyBike.addEventListener('click', displayOnSaleBikes);
 rentBike.addEventListener('click', displayOnlyRentalBikes);
 rentScooter.addEventListener('click', displayRentalScooters);
+
+
+rentForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let personId = personInDb(rentNick.value);
+    if (personId === -1) {
+        addCustomer(rentNick.value, rentName.value, rentSurname.value, []);
+    }
+
+    let vehicleId = vehicleInShop(rentVehicle.value);
+    if (vehicleId === -1) {
+        alert("Nie ma takiego modelu w naszym sklepie.");
+    } else if (canBeRented(vehicleId)) {
+        // Wykonujemy odpowiednie operacje - dodajemy do basketa dopowiedniej osoby odpowiednie dane i odejmujemy odpowiednią liczbę w vehicles
+    }
+};
+
+
+returnForm.onsubmit = (e) => {
+    e.preventDefault();
+    
+    let personId = personInDb(returnNick.value);
+    let vehicleId = vehicleInShop(returnVehicle.value);
+    if (personId === -1) {
+        alert("Nie ma takiej osoby w naszej bazie danych.");
+    } else if (vehicleId === - 1) {
+        alert("Nie było takiego pojazdu w naszym sklepie.");
+    } else {
+        // Wykonujemy odpowiednie operacje - wywalamy z basketa danej osoby i dodajemy odpowiednią wartość do odpowiedniego pojazdu
+    }
+};

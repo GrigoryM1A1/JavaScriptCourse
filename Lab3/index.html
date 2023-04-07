@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0146767ed2.js" crossorigin="anonymous"></script>
     <title>
-      Tytuł strony / Page tile
+      Bicykl
     </title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
@@ -85,6 +85,27 @@
                 <li>50</li>
             </div>
         </div>
+    </div>
+
+    <div class="form-div">
+        <form id="rent">
+            <div class="input-container">
+                <input type="text" placeholder="Nick" id="rentNick" name="nick" required>
+                <input type="text" placeholder="Imię" id="rentName" name="name" required>
+                <input type="text" placeholder="Nazwisko" id="rentSurname" name="surname" required>
+                <input type="text" placeholder="Pojazd" id="rentVehicle" name="vehicle" required>
+                <input type="number" placeholder="Ile" id="rentAmount" name="amount" required>
+                <button id="rentBtn" type="submit">Wypożycz pojazd</button>
+            </div>
+        </form>
+
+        <form id="return">
+            <div class="input-container">
+                <input type="text" placeholder="Nick" id="returnNick" name="nick" required>
+                <input type="text" placeholder="Pojazd" id="returnVehicle" name="vehicle" required>
+                <button id="returnBtn">Zwrot pojazdu</button>
+            </div>
+        </form>
     </div>
 
     <!-- ===Footer=== -->
