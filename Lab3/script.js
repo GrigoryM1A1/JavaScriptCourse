@@ -221,12 +221,12 @@ function setDataBase() {
 }
 
 
-function addCustomer(nickname, name, surname, basket) {
+function addCustomer(nickname, name, surname) {
     customers.push({
         nickname: nickname,
         name: name,
         surname: surname,
-        basket: basket
+        basket: []
     });
 
     localStorage.setItem("customers", JSON.stringify(customers));
@@ -234,7 +234,7 @@ function addCustomer(nickname, name, surname, basket) {
 
 
 function canBeRented(vehId, amountToRent) {
-    if (vehicles[vehId].forRent && vehicles[vehId] >= amountToRent) {
+    if (vehicles[vehId].forRent && vehicles[vehId].amount >= amountToRent) {
         return true;
     }
     return false;
@@ -278,14 +278,27 @@ rentForm.onsubmit = (e) => {
 
     let personId = personInDb(rentNick.value);
     if (personId === -1) {
-        addCustomer(rentNick.value, rentName.value, rentSurname.value, []);
+        addCustomer(rentNick.value, rentName.value, rentSurname.value);
     }
 
+    personId = personInDb(rentNick.value);
     let vehicleId = vehicleInShop(rentVehicle.value);
     if (vehicleId === -1) {
         alert("Nie ma takiego modelu w naszym sklepie.");
-    } else if (canBeRented(vehicleId)) {
+    } else if (canBeRented(vehicleId, parseInt(rentAmount.value))) {
         // Wykonujemy odpowiednie operacje - dodajemy do basketa dopowiedniej osoby odpowiednie dane i odejmujemy odpowiednią liczbę w vehicles
+        console.log("Wypozyczam");
+        customers[personId].basket.push({
+            name: rentVehicle.value,
+            amount: parseInt(rentAmount.value)
+        });
+        localStorage.setItem('customers', JSON.stringify(customers));
+
+        vehicles[vehicleId].amount -= parseInt(rentAmount.value);
+        localStorage.setItem('vehicles', JSON.stringify(vehicles));
+        displayAll();
+    } else {
+        alert("Nie można wypożyczyć pojazdu - nie ma go w ofercie lub nie ma aż tylu sztuk w magazynie.");
     }
 };
 
