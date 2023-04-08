@@ -261,6 +261,19 @@ function personInDb(customerNick) {
 }
 
 
+function didPersonRented(vehicleName, personId) {
+    let i = 0;
+    for (item of customers[personId].basket) {
+        console.log(vehicleName + " " + item.name);
+        if (vehicleName === item.name) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
+
 
 window.onload = setDataBase;
 localStorage.setItem("customers", JSON.stringify(customers));
@@ -286,12 +299,16 @@ rentForm.onsubmit = (e) => {
     if (vehicleId === -1) {
         alert("Nie ma takiego modelu w naszym sklepie.");
     } else if (canBeRented(vehicleId, parseInt(rentAmount.value))) {
-        // Wykonujemy odpowiednie operacje - dodajemy do basketa dopowiedniej osoby odpowiednie dane i odejmujemy odpowiednią liczbę w vehicles
         console.log("Wypozyczam");
-        customers[personId].basket.push({
-            name: rentVehicle.value,
-            amount: parseInt(rentAmount.value)
-        });
+        let personBasketId = didPersonRented(rentVehicle.value, personId);
+        if (personBasketId === -1) {
+            customers[personId].basket.push({
+                name: rentVehicle.value,
+                amount: parseInt(rentAmount.value)
+            });
+        } else {
+            customers[personId].basket[personBasketId].amount += parseInt(rentAmount.value);
+        }
         localStorage.setItem('customers', JSON.stringify(customers));
 
         vehicles[vehicleId].amount -= parseInt(rentAmount.value);
@@ -308,11 +325,21 @@ returnForm.onsubmit = (e) => {
     
     let personId = personInDb(returnNick.value);
     let vehicleId = vehicleInShop(returnVehicle.value);
+    let personBasketId = didPersonRented(returnVehicle.value, personId);
+    console.log(personBasketId);
     if (personId === -1) {
         alert("Nie ma takiej osoby w naszej bazie danych.");
-    } else if (vehicleId === - 1) {
+    } else if (vehicleId === -1) {
         alert("Nie było takiego pojazdu w naszym sklepie.");
+    } else if (personBasketId === -1) {
+        alert("Ta osoba nie wypożyczyła takiego pojazdu.")
     } else {
-        // Wykonujemy odpowiednie operacje - wywalamy z basketa danej osoby i dodajemy odpowiednią wartość do odpowiedniego pojazdu
+        let returnedAmount = customers[personId].basket[personBasketId].amount;
+        customers[personId].basket.splice(personBasketId, 1);
+        localStorage.setItem('customers', JSON.stringify(customers));
+
+        vehicles[vehicleId].amount += returnedAmount;
+        localStorage.setItem('vehicles', JSON.stringify(vehicles));
+        displayAll();
     }
 };
