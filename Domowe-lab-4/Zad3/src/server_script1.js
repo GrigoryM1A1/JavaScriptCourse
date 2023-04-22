@@ -36,6 +36,7 @@ function requestListener(request, response) {
         // Generating the form if the relative URL is '/', and the GET method was used to send data to the server'
         /* ************************************************** */
         // Setting a response body
+        response.writeHead(200, { 'Content-Type': 'text/html' });
         response.write(`
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@ function requestListener(request, response) {
   <body>
     <main>
       <h1>First application</h1>
-      <form method="GET" action="/submit">
+      <form method="POST" action="/">
         <label for="name">Give your name</label>
         <input name="name">
         <br>
@@ -75,6 +76,25 @@ function requestListener(request, response) {
         /* ************************************************** */
         response.end(); // The end of the response — send it to the browser
     }
+
+    else if (url.pathname === '/' && request.method === 'POST') {
+      // Processing the form content, if the relative URL is '/', and the POST method was used to send data to the server'
+      /* ************************************************** */
+      // Creating an answer header — we inform the browser that the returned data is plain text
+      response.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+      /* ************************************************** */
+      // Place given data (here: 'Hello <name>') in the body of the answer
+      let body = '';
+      request.on('data', (chunk) => {
+          body += chunk.toString();
+      });
+      request.on('end', () => {
+          const name = body.split('=')[1];
+          response.write(`Hello ${decodeURIComponent(name)}`);
+          response.end();
+      });
+  }
+  
 
     /* -------------------------- */
     /* If no route is implemented */
