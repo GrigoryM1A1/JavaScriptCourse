@@ -5,7 +5,7 @@ import { exec } from 'child_process';
 import { stderr, stdout } from 'process';
 
 
-const filename = './counter.txt';
+const filename = './src/counter.txt';
 
 
 function readCounterSync() {
@@ -69,14 +69,22 @@ function getInput() {
 }
 
 
-if (argv.includes('--sync')) {
-    run(false);
-} else if (argv.includes('--async')) {
-    run(true);
-} else if (argv.length < 3) {
-    console.log("Wprowadź komendy - naciśnięcie Ctrl+C kończy działanie programu");
-    getInput();
+
+function main() {
+    try {
+        fs.accessSync(filename, fs.constants.R_OK | fs.constants.W_OK);
+    } catch (error) {
+        console.error("No Read and Write access!");
+        return;
+    }
+    if (argv.includes('--sync')) {
+        run(false);
+    } else if (argv.includes('--async')) {
+        run(true);
+    } else if (argv.length < 3) {
+        console.log("Wprowadź komendy - naciśnięcie Ctrl+C kończy działanie programu");
+        getInput();
+    }
 }
 
-
-
+main();

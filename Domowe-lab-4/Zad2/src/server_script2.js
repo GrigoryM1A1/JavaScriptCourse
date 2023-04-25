@@ -71,7 +71,6 @@ function executeCommands(commands, response) {
         if (commands[j] === "") {;}
         else {
             exec(commands[j], (erro, stdout, stderr) => {
-                // console.log(stdout);
                 console.error(stderr);
                 let out = '';
                 out += stdout.toString();            
@@ -154,6 +153,13 @@ function requestListener(request, response) {
         `);
         response.end();
     } else if (url.pathname === '/submit' && request.method === 'GET') {
+        try {
+            fs.accessSync(filename, fs.constants.R_OK | fs.constants.W_OK);
+        } catch (error) {
+            console.error("No Read and Write access!");
+            response.write("No Read and Write access!");
+            response.end();
+        }
         
         let mode = url.searchParams.get('mode');
         if (mode === 'sync') {
@@ -169,6 +175,10 @@ function requestListener(request, response) {
             commands = commands.split('\n');
             executeCommands(commands, response);
         }
+    } else {
+        response.writeHead(501, { 'Content-Type': 'text/plain; charset=utf-8' });
+        response.write('Error 501: Not implemented');
+        response.end();
     }
 }
 
