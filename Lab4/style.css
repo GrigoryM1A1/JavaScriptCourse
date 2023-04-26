@@ -1,0 +1,506 @@
+/* Variables */
+html{
+    --div-background: rgb(34, 34, 34);
+}
+
+/* Global styling */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navabar */
+/* Navabar */
+nav{
+    position: fixed;
+    background-color: var(--div-background);
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+}
+
+.nav-row{
+    padding: .5em .7em;
+    font-size: 1.5rem;
+    /* width: 100%; */
+}
+
+/* Burger menu */
+#nav-button{
+    display: none;
+}
+
+.burger-icon{
+    display: block;
+}
+
+nav .burger-icon .line{
+    width: 30px;
+    height: 5px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 3px;
+
+    transition: all .3s ease-in-out;
+}
+
+nav :checked ~ .burger-icon .line:nth-child(1){
+    transform: translateY(10px) rotate(225deg);
+}
+
+nav :checked ~ .burger-icon .line:nth-child(3){
+    transform: translateY(-10px) rotate(-225deg);
+}
+
+nav :checked ~ .burger-icon .line:nth-child(2){
+    opacity: 0;
+}
+
+.menu{
+    position: fixed;
+    background-color: var(--div-background);
+    top: -100%;
+    width: 100%;
+    transition: all .6s;
+    z-index: 8;
+}
+
+nav :checked ~ .menu{
+    top: 60.8px;
+}
+
+.nav-constant{
+    z-index: 10;
+}
+
+
+/* Dropdowon menu - Wypożycz */
+.dropdown{
+    position: relative;
+}
+
+.dropdown ul{
+    width: 160px;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dropdown p{
+    /* TODO */
+    cursor: pointer;
+    margin-left: .5em;
+    /* width: 145px; */
+}
+
+.arrow-down{
+    cursor: pointer;
+    position: absolute;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid white;
+
+    left: 145px;
+    top: 30.4px;
+  }
+
+.dropdown p:hover + ul,
+.dropdown ul:hover,
+.arrow-down:hover ~ ul{
+    display: block;
+}
+
+.dropdown ul li{
+    list-style: none;
+}
+
+.dropdown ul li button{
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    padding: .3em .5em;
+    color: black;
+    width: 100%;
+    display: block;
+    transition: .5s;
+    font-size: 1.2rem;
+}
+
+.dropdown ul li:nth-child(1) button{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.dropdown ul li:nth-child(2) button{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dropdown ul li button:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+.dropdown ul li:nth-child(1){
+    border-bottom: 1px solid var(--div-background);
+}
+
+.buy-bike button,
+.show-all button{
+    cursor: pointer;
+    font-size: 1.5rem;
+    border: none;
+    color: white;
+    padding: .5em;
+    border-radius: 10px;
+    transition: .5s;
+    background-color: var(--div-background);
+}
+
+.buy-bike button:hover,
+.show-all button:hover{
+    background-color: rgb(156, 156, 156);
+    color: black;
+}
+
+.search-row{
+    margin-top: 1em;
+    display: flex;
+    width: 100%;
+
+}
+
+.search-row input{
+    font-size: 1.2rem;
+    padding: .5em;
+    outline: none;
+    border: none;
+    width: 70%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search-row button{
+    font-size: 1.2rem;
+    padding: .5em;
+    background-color: white;
+    cursor: pointer;
+    transition: .5s;
+    margin: 0;
+    border: none;
+    color: white;
+    background-color: rgb(20, 20, 20, .8);
+    width: 30%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search-row button:hover{
+    background-color: rgb(156, 156, 156);
+    color: black;
+}
+
+.space-block{
+    width: 100%;
+    height: 60.8px;
+    background-color: var(--div-background);
+}
+
+
+/* Main */
+.title{
+    text-align: center;
+}
+.title h2{
+    font-size: 1.5rem;
+    width: 97%;
+    margin: .5em auto;
+}
+
+/* Bike cards styling */
+.cards-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 90%;
+    margin: 1em auto;
+}
+
+.title{
+    font-size: 1.1rem;
+}
+
+.card{
+    color: white;
+    background-color: var(--div-background);
+
+    display: flex;
+    flex-direction: column;
+    padding: .5em 1em;
+    border-radius: 10px;
+}
+
+.card h5{
+    margin: .5em 0;
+}
+
+.card h4{
+    font-size: 1.35rem;
+}
+
+.card p:nth-child(even){
+    margin-bottom: .8em;
+}
+
+.card h5,
+.card h4{
+    font-weight: 500;
+}
+
+.card img{
+    max-width: 300px;
+    margin: .75em auto;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+/* Basket styling */
+.basket{
+    margin: 1.2em auto;
+    width: 95%;
+    display: flex;
+}
+
+.basket li{
+    list-style: none;
+    padding: .2em;
+    border-bottom: 1px solid var(--div-background);
+}
+
+.basket .count-col li{
+    padding-left: .4em;
+}
+
+.count-col{
+    width: 15%;
+}
+
+.model-col{
+    width: 40%;
+}
+
+.amount-col{
+    width: 45%;
+}
+
+.header-row{
+    background: var(--div-background);
+    color: white;
+}
+
+.basket .count-col .header-row{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.basket .amount-col .header-row{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+
+/* Footer */
+footer{
+    background-color: var(--div-background);
+    color: white;
+    text-align: center;
+}
+
+footer a i{
+    text-decoration: none;
+    color: white;
+    margin-right: .5em;
+}
+
+footer li{
+    padding: .3em 0;
+}
+
+footer li:nth-child(1){
+    padding-top: .5em;
+}
+
+footer li:nth-child(3){
+    padding-bottom: .5em;
+}
+
+footer li.title{
+    font-size: 1.2rem;
+}
+
+.animate{
+    animation: translate-animation;
+    animation-duration: 13s;
+    animation-iteration-count: infinite;
+    z-index: -1;
+}
+
+
+/* Forms */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    margin: 1em auto;
+}
+
+.input-container input {
+    margin-bottom: .4em;
+    padding: .5em;
+    outline: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.input-container button {
+    font-size: 1.1rem;
+    padding: .3em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+#rentBtn {
+    color: white;
+    background-color: green;
+}
+
+#rentBtn:hover {
+    background-color: rgba(0, 95, 0, 0.986);
+}
+
+#returnBtn {
+    color: white;
+    background-color: rgb(207, 21, 21);
+}
+
+#returnBtn:hover {
+    background-color: rgb(165, 11, 11);
+}
+
+
+
+/* Media query */
+@media (min-width: 600px){
+    /* Main content */
+    .title h2{
+        font-size: 2rem;
+    }
+
+    .cards-container{
+        width: 98%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .side-card{
+        width: 28%;
+    }
+
+    .mid-card{
+        width: 40%;
+    }
+
+    .card h5{
+        font-size: 1.3rem;
+    }
+
+    .basket{
+        width: 98%;
+    }
+}
+
+@media (min-width: 705px){
+    footer ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+    }
+
+    footer ul li{
+        margin: .7em .9em;
+    }
+}
+
+@media (min-width: 1050px){
+    /* Navbar */
+    nav{
+        position: initial;
+        justify-content: initial;
+        align-items: center;
+    }
+
+    .burger-icon{
+        display: none;
+    }
+
+    .menu{
+        position: initial;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .space-block{
+        display: none;
+    }
+
+    .search-row{
+        margin: initial;
+        width: 50%;
+    }
+
+    .buy-bike{
+        position: absolute;
+        left: 210px
+    }
+
+    .show-all{
+        position: absolute;
+        left: 370px;
+    }
+
+    .dropdown ul{
+        width: 120px;
+    }
+
+    /* Main content */
+    .cards-container,
+    .basket{
+        width: 98%;
+    }
+
+    .side-card,
+    .mid-card{
+        width: 30%;
+    }
+
+    .card p{
+        font-size: 1.3rem;
+        font-weight: 200;
+    }
+
+    .dropdown p{
+        margin-left: 0;
+    }
+}

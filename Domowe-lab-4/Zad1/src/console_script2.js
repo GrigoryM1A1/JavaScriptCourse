@@ -2,7 +2,6 @@ import fs from 'fs';
 import { argv } from 'node:process';
 import readline from 'readline'
 import { exec } from 'child_process';
-import { stderr, stdout } from 'process';
 
 
 const filename = './src/counter.txt';
