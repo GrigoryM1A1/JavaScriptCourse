@@ -70,7 +70,7 @@ app.post('/', function (request, response) {
 
 /* ************************************************ */
 // The application is to listen on port number 8000
-app.listen(8000, function () {
-    console.log('The server was started on port 8000');
-    console.log('To stop the server, press "CTRL + C"');
-});         
+// app.listen(8000, function () {
+//     console.log('The server was started on port 8000');
+//     console.log('To stop the server, press "CTRL + C"');
+// });         
