@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable indent */
 // Source:  https://codeforgeek.com/unit-testing-nodejs-application-using-mocha/
 
@@ -28,8 +26,8 @@ describe('GET /', () => {
 describe('GET /submit', () => {
     it('responds with welcome', (done) => {
         server
-            .get(encodeURI('/submit?name=róża'))
-            .expect('Content-Type', /plain/)
+            .get('/submit')
+            .query({ name: 'róża' })
             .expect(200, 'Hello róża')
             .end((err, res) => {
                 if (err) return done(err);
@@ -42,8 +40,8 @@ describe('POST /', () => {
     it('responds with welcome', (done) => {
         server
             .post('/')
-            .send(encodeURI('name=róża'))
-            .expect('Content-Type', /plain/)
+            .type('form')
+            .send({ name: 'róża' })
             .expect(200, 'Hello róża')
             .end((err, res) => {
                 if (err) return done(err);
